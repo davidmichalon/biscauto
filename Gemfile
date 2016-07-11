@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
+gem 'devise'
+
 gem 'rails', '4.2.6'
 gem 'puma'
 gem 'pg'
@@ -23,10 +25,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  
-  
+
+
 end
 
 group :production do
   gem 'rails_12factor'
 end
+
