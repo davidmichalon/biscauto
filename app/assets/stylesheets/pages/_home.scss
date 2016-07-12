@@ -38,3 +38,22 @@
 .video-container video.fillWidth {
     width: 100%;
 }
+
+.video-container .title-container {
+    z-index: 1000;
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.video-container .address-form {
+    z-index: 1000;
+    position: absolute;
+    top: 55%;
+    width: 100%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
