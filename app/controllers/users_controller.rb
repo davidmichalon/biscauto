@@ -1,14 +1,22 @@
-class CocktailsController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   def index
     @users = User.all
+    @experts = @users.select do |user|
+      user.expert == '1'
+
+    end
+    @address = params[:query_address]
+
+
+
   end
 
 
   def show
-    @user = User.new
+
   end
 
 
@@ -24,6 +32,12 @@ class CocktailsController < ApplicationController
   end
 
   private
+
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
 
     def users_params
       params.require(:user).permit(:email)
