@@ -3,6 +3,11 @@ ruby '2.3.1'
 
 gem 'devise'
 
+gem "figaro"
+
+#facebook
+gem 'omniauth-facebook'
+
 gem 'rails', '4.2.6'
 gem 'puma'
 gem 'pg'
