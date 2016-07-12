@@ -1,3 +1,24 @@
-<h1>Display profile</h1>
+<div class="container text-center">
 
-<%= @user.first_name %>
+
+<div class="row">
+<h1 ><%= @user.first_name %></h1>
+<%= image_tag @user.picture, class:"avatar"%>
+</div>
+
+
+
+<p> <%= @user.city %></p>
+
+<p><%= @user.description %></p>
+
+
+
+<% if @user == current_user %>
+  <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+<% end %>
+
+
+
+
+</div>
