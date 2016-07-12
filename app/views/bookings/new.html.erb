@@ -1,0 +1,13 @@
+<div class="container">
+   <div class="row">
+     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <%= simple_form_for([@expert, @booking]) do |f| %>
+        <%= f.input :planned_for, label: "Quand souhaitez vous booked ?"%>
+        <%= f.input :price, label: "Quel est votre prix ?"%>
+        <%= f.input :comments, label: "Souhaiteriez-vous transmettre des informations ?"%>
+        <%= f.button :submit %>
+      <% end %>
+   </div>
+  </div>
+</div>
