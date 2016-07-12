@@ -2,8 +2,13 @@
 <h1> Voici nos experts à proximité</h1>
 <ul>
 <% @experts.each do |expert| %>
-  <li><%= link_to expert.first_name, user_path(expert) %> <%= link_to "Faire une demande" %></li>
+  <li><%= link_to "faire une demande a #{expert.first_name}", new_user_booking_path(expert), class: "btn btn-primary"%></li>
+
+
   <!-- A rajouter dans le lien ci-dessus : le lien vers le form de creation de booking -->
+
+
+
 <% end %>
 
 
