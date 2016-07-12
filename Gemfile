@@ -3,7 +3,6 @@ ruby '2.3.1'
 
 gem 'devise'
 
-gem "figaro"
 
 #facebook
 gem 'omniauth-facebook'
