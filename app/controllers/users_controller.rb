@@ -4,11 +4,17 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @experts = @users.select do |user|
-      user.expert == '1'
-
-    end
     @address = params[:query_address]
+    @users_around = User.near(@address, 50)
+
+    @experts_around = @users_around.select do |user|
+      user.expert == '1'
+    end
+
+      @markers = Gmaps4rails.build_markers(@experts_around) do |expert, marker|
+        marker.lat expert.latitude
+        marker.lng expert.longitude
+      end
 
 
 

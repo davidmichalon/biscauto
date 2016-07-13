@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :demands, class_name: 'Booking', foreign_key: 'client_id'
   has_many :missions, class_name: 'Booking', foreign_key: 'expert_id'
 
+  geocoded_by :address
+  before_save :geocode, if: :address_changed?
+
   def self.find_for_facebook_oauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider

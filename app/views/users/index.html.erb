@@ -1,16 +1,27 @@
 
-<h1> Voici nos experts à proximité</h1>
-<ul>
-<% @experts.each do |expert| %>
-  <li><%= link_to "faire une demande a #{expert.first_name}", new_user_booking_path(expert), class: "btn btn-primary"%></li>
+<div class="container">
+<h1> Nos experts à proximité</h1>
 
 
-  <!-- A rajouter dans le lien ci-dessus : le lien vers le form de creation de booking -->
+<div id="map" class="col-sm-6" style=" height: 600px; margin: 20px;"></div>
 
-
-
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
 <% end %>
 
+<ul>
+<% @experts_around.each do |expert| %>
 
-
+  <li><%= link_to "faire une demande a #{expert.first_name}", new_user_booking_path(expert), class: "btn btn-primary"%></li>
+<% end %>
 </ul>
+</div>

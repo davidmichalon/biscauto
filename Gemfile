@@ -4,6 +4,14 @@ ruby '2.3.1'
 gem 'devise'
 
 
+# geocoding gems
+gem 'geocoder'
+gem "coffee-rails"
+gem "gmaps4rails"
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
+
 #facebook
 gem 'omniauth-facebook'
 
@@ -26,8 +34,7 @@ gem 'binding_of_caller'
 gem 'better_errors'
 
 group :development, :test do
-  gem 'binding_of_caller'
-  gem 'better_errors'
+
   gem 'quiet_assets'
   gem 'pry-byebug'
   gem 'pry-rails'
