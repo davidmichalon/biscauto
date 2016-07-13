@@ -1,7 +1,9 @@
 
 <h1> Voici nos experts à proximité</h1>
+<p><%= @address %></p>
+
 <ul>
-<% @experts.each do |expert| %>
+<% @experts_around.each do |expert| %>
   <li><%= link_to "faire une demande a #{expert.first_name}", new_user_booking_path(expert), class: "btn btn-primary"%></li>
 
 

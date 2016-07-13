@@ -4,11 +4,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @experts = @users.select do |user|
-      user.expert == '1'
-
-    end
     @address = params[:query_address]
+    @users_around = User.near(@address, 50)
+
+    @experts_around = @users_around.select do |user|
+      user.expert == '1'
+    end
+
 
 
 
