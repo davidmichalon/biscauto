@@ -15,13 +15,31 @@
 
 
 
-<% if @user == current_user %>
-  <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
-<% end %>
 
 
 
 
 </div>
 
+<%if user_signed_in? %>
+  <% if @user == current_user %>
+    <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+    <h2>Mes demandes</h2>
+    <% current_user.demands.each do |d| %>
+      <p><%= d.planned_for %></p>
+      <p>Demande a <%= d.expert.first_name %></p>
+      <p><%= d.comments %></p>
+    <% end %>
+    <%if current_user.expert == 1%>
+      <h2>Mes missions</h2>
+      <% current_user.missions.each do |mission| %>
+        <p><%= mission.planned_for %></p>
+        <p>Demande de <%= mission.client.first_name %></p>
+        <p><%= mission.comments %></p>
+      <% end %>
+    <% end %>
 
+  <% end %>
+<% else %>
+  <p>Afficher rating et comments</p>
+<%end%>
