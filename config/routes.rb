@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :users, only: [:show, :index, :edit, :update] do
-    resources :bookings, only: [:create, :destroy, :new, :index]
+    resources :bookings, only: [:create, :destroy, :new, :index] do
+      member  do
+        post 'accept_booking', to: "bookings#accept_booking"
+        post 'decline_booking', to: "bookings#decline_booking"
+      end
+    end
   end
 
 
