@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.destroy_all
 
 User.create!(email: "jb@jb.fr", password:"123456", first_name: "Paul", address: 'Saint Herblain', city:'Saint-Herblain', expert: 1, rating: 3)
 User.create!(email: "pierre@jb.com", password:"123456", first_name: "Pierre", address: 'Reze 44 france', city: 'Rezé', expert: 1, rating: 3)
