@@ -11,6 +11,10 @@ class UsersController < ApplicationController
       user.expert == '1'
     end
 
+      @markers = Gmaps4rails.build_markers(@experts_around) do |expert, marker|
+        marker.lat expert.latitude
+        marker.lng expert.longitude
+      end
 
 
 

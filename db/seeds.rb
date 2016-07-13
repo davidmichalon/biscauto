@@ -5,8 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(email: "jb@jb.com", first_name: "Paul", address: '25 Boulevard Gustave Roch, Nantes', expert: 1)
-User.create(email: "pierre@jb.com", first_name: "Pierre", address: '30 Boulevard Gustave Roch, Nantes', expert: 1)
-User.create(email: "simon@jb.com", first_name: "Simon", address: '15 Boulevard Gustave Roch, Nantes', expert: 0)
-User.create(email: "jacques@jb.com", first_name: "Jacques", address: '25 Boulevard Gustave Roch, Nantes', expert: 0)
-User.create(email: "joseph@jb.com", first_name: "Joseph", address: '25 Boulevard Gustave Roch, Nantes', expert: 0)
+
+
+User.destroy_all
+
+User.create!(email: "jb@jb.fr", password:"123456", first_name: "Paul", address: 'Saint Herblain', city:'Saint-Herblain', expert: 1, rating: 3)
+User.create!(email: "pierre@jb.com", password:"123456", first_name: "Pierre", address: 'Reze 44 france', city: 'Rezé', expert: 1, rating: 3)
+User.create!(email: "simon@jb.com", password:"123456", first_name: "Simon", address: 'sainte luce sur loire', city: 'Sainte-Luce', expert: 1, rating: 5)
+User.create!(email: "jacques@jb.com", password:"123456", first_name: "Jacques", address: 'carquefou', city: 'Carquefou', expert: 1, rating: 4)
+User.create!(email: "joseph@jb.com", password:"123456", first_name: "Joseph", address: 'thouare 44 france', city: 'Thouaré', expert: 1, rating: 2)
