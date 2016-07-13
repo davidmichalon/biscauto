@@ -1,0 +1,45 @@
+.card-index {
+
+border: 1px solid #CECECE;
+margin: 10px;
+border-radius: 5px;
+position: relative;
+height: 150px;
+}
+
+.card-index-user-name {
+position: absolute;
+top: 5px;
+font-size: 30px;
+}
+
+.card-index-request-btn {
+position: absolute;
+bottom: 5px;
+right: 5px;
+
+}
+
+.card-index-user-city {
+position: absolute;
+top: 50px;
+font-size: 15px;
+}
+
+.card-index-avatar {
+position: absolute;
+top: 5px;
+right: 5px;
+}
+
+.card-index-profile-btn {
+position: absolute;
+bottom: 5px;
+right: 185px;
+}
+
+.card-index-rating {
+position: absolute;
+top: 80px;
+left: 13px;
+}

@@ -3,9 +3,9 @@
      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
       <%= simple_form_for([@expert, @booking]) do |f| %>
-        <%= f.input :planned_for, label: "Quand souhaitez vous booked ?"%>
-        <%= f.input :price, label: "Quel est votre prix ?"%>
-        <%= f.input :comments, label: "Souhaiteriez-vous transmettre des informations ?"%>
+        <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?"%>
+        <%= f.input :price, label: "Quel prix offrez vous pour cette mission?"%>
+        <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)"%>
         <%= f.button :submit %>
       <% end %>
    </div>
