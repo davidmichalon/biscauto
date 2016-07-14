@@ -1,4 +1,3 @@
-
 <div class="container text-center">
 
 
@@ -13,71 +12,112 @@
 
 </div>
 
+
 <%if user_signed_in? %>
 
   <% if @user == current_user %>
 
       <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+     <div class="container">
       <h2>Mes demandes</h2>
+      <ul class="left-padding">
+        <% current_user.demands.each do |demand| %>
+        <li class= "list-unstyled">
+          <div class="demands-card">
 
-      <% current_user.demands.each do |d| %>
-      <div class="list-demands ">
-        <div class="expert-picture">
-         <p><%= d.expert.picture %></p>
-        </div>
-        <div class="expert-first_name">
-          <p>Demande a <%= d.expert.first_name %></p>
-        </div>
-        <div class="planned-for">
-          <p><%= d.planned_for %></p>
-        </div>
-        <div class="comments">
-          <p><%= d.comments %></p>
-        </div>
-        <div class="booking_status">
-          <p><%= d.booking_status %></p>
-        </div>
-        <div>
-        <%= link_to "Cancel your booking",user_booking_path(current_user, d), method: :delete, class: "btn btn-danger" %>
-         </div>
-      <% end %>
+            <div class="demands-card-items">
+              <% case demand.booking_status %>
+                <% when "pending" %>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <p class="padded-name"><%= demand.booking_status %></p>
+                <% when "accepted" %>
+                  <i class="fa fa-check-circle-o" aria-hidden="true" style="color: green;"></i>
+                  <p class="padded-name"style="color: green;"><%= demand.booking_status %></p>
+                <% when "declined" %>
+                  <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+                  <p class="padded-name"  style="color: red;"><%= demand.booking_status %></p>
+              <% end %>
+            </div>
 
+
+            <div class="appointment">
+              <div class="demands-card-items">
+                <p><%= demand.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></p>
+              </div>
+              <div class="demands-card-items">
+                <p><%= demand.comments %></p>
+              </div>
+            </div>
+
+            <div class="demands-card-items">
+               <img src="http://unsplash.it/80x80" alt="" class="img-circle">
+               <p class="padded-name"><%= demand.expert.first_name %></p>
+            </div>
+
+            <div class="demands-card-items">
+            <%= link_to "Cancel your booking",user_booking_path(current_user, demand), method: :delete, class: "btn btn-danger" %>
+             </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
     <%if current_user.expert == "1"%>
 
 
+    <div class="container">
+      <h2>Mes missions</h2>
+       <ul class="left-padding">
+        <% current_user.missions.each do |mission| %>
+          <li class= "list-unstyled">
+            <div class="demands-card">
 
-          <h2>Mes missions</h2>
-          <% current_user.missions.each do |mission| %>
-          <div class="list missions ">
-            <div class="client picture">
+              <div class="demands-card-items">
+                <% case mission.booking_status %>
+                  <% when "pending" %>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <p><%= mission.booking_status %></p>
+                  <% when "accepted" %>
+                   <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                   <p><%= mission.booking_status %></p>
+                <% end %>
+              </div>
+
+
+            <div class="demands-card-items">
              <p><%= mission.client.picture %></p>
+             <p><%= mission.client.first_name %></p>
             </div>
-            <div class="client-first_name">
-            <p>Demande de <%= mission.client.first_name %></p>
-            </div
-            <div class="planned-for">
-            <p><%= mission.planned_for %></p>
+
+
+            <div class="appointment">
+              <div class="demands-card-items">
+                <p><%= mission.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></p>
+              </div>
+              <div class="demands-card-items">
+                <p><%= mission.comments %></p>
+              </div>
             </div>
-            <div class="comments">
-            <p><%= mission.comments %></p>
-            </div>
-            <div class="booking_status">
-            <p><%= mission.booking_status %></p>
-            </div>
-            <div>
+
+          <div class="container">
+            <div class="demands-card-items">
               <%= link_to "Accept your booking",accept_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-primary" %>
             </div>
-            <div>
-            <%= link_to "Decline your booking",decline_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-danger" %>
+
+            <div class="demands-card-items">
+              <%= link_to "Decline your booking",decline_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-danger" %>
             </div>
+          </div>
 
-          <% end %>
-        <% end %>
-    </div>
+          </div>
+         </li>
+       <% end %>
+       </ul>
+     </div>
 
+    <% end %>
+   <% end %>
   <% end %>
 
-<% else %>
-  <p>Afficher rating et comments</p>
-<%end%>
+

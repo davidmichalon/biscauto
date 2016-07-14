@@ -1,0 +1,54 @@
+
+
+.demands-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 250px;
+    background-color: rgb(245, 245, 245);
+    margin: 15px 0px;
+    border-radius: 3px;
+    box-shadow: 1px 2px rgb(240, 240, 240);
+}
+
+.demands-card-items {
+}
+
+.left-padding {
+  padding-left: 0px;
+}
+
+.appointment{
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex: 1 0 auto;
+flex-direction: column;
+text-align: center
+}
+
+.container{
+
+}
+
+.demands-card-items {
+  text-align: center;
+  padding: 0 20px;
+  i {
+    font-size: 30px;
+  }
+}
+
+.padded-name {
+  padding-top: 10px;
+
+}
+
+.btn-danger {
+  opacity: 0.4;
+  transition: all ease 0.5s;
+  &:hover{
+    opacity: 1;
+  }
+}
