@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @booking.client = current_user
     @booking.booking_status = "pending"
     if @booking.save
-      redirect_to user_bookings_path(current_user)
+      redirect_to user_path(current_user)
     else
       render 'new'
     end
