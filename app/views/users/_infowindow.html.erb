@@ -1,0 +1,16 @@
+<div class="infowindow">
+
+  <div class="card-index-map">
+    <div class="card-index-user-name"> <b><%= expert.first_name %></b></div>
+    <div class="card-index-user-city"> <%= expert.city %></div>
+    <div class="card-index-avatar"> <%= image_tag expert.picture, class:"avatar-large" %> </div>
+    <div class="card-index-rating">
+      <% expert.rating.round.times do %>
+        <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
+      <% end %>
+    </div>
+    <div class="card-index-profile-btn">  <%= link_to "Voir le profil", user_path(expert), class: "btn btn-primary"%></div>
+    <div class="card-index-request-btn">  <%= link_to "Faire une demande", new_user_booking_path(expert), class: "btn btn-danger"%></div>
+  </div>
+
+</div>

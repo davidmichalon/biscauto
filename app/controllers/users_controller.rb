@@ -11,13 +11,12 @@ class UsersController < ApplicationController
       user.expert == '1'
     end
 
-      @markers = Gmaps4rails.build_markers(@experts_around) do |expert, marker|
-        marker.lat expert.latitude
-        marker.lng expert.longitude
-      end
-
-
-
+    @markers = Gmaps4rails.build_markers(@experts_around) do |expert, marker|
+      marker.lat expert.latitude
+      marker.lng expert.longitude
+      marker.picture ({"url" => "#{view_context.image_url("logo_32.png")}", "width" => 32, "height" => 32})
+      marker.infowindow render_to_string(partial: 'users/infowindow', locals: {expert: expert})
+    end
   end
 
 
