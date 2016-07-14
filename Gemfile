@@ -34,7 +34,7 @@ gem 'binding_of_caller'
 gem 'better_errors'
 
 group :development, :test do
-
+  gem 'mailcatcher'
   gem 'quiet_assets'
   gem 'pry-byebug'
   gem 'pry-rails'
