@@ -1,16 +1,4 @@
-<div class="container text-center">
 
-
-<div class="row">
-<h1 ><%= @user.first_name %></h1>
-<%= image_tag @user.picture, class:"avatar"%>
-</div>
-
-<p> <%= @user.city %></p>
-
-<p><%= @user.description %></p>
-
-</div>
 
 
 <%if user_signed_in? %>
@@ -19,13 +7,13 @@
 
       <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
      <div class="container">
-      <h2>Mes demandes</h2>
-      <ul class="left-padding">
-        <% current_user.demands.each do |demand| %>
-        <li class= "list-unstyled">
-          <div class="demands-card">
+      <h1>Mes demandes</h1>
 
-            <div class="demands-card-items">
+        <% current_user.demands.each do |demand| %>
+      <div class="card-demand">
+        <div class="card-demand-top">
+
+            <div class="card-demand-top-left">
               <% case demand.booking_status %>
                 <% when "pending" %>
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -39,31 +27,34 @@
               <% end %>
             </div>
 
-
-            <div class="appointment">
-              <div class="demands-card-items">
-                <p><%= demand.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></p>
-              </div>
-              <div class="demands-card-items">
-                <p><%= demand.comments %></p>
-              </div>
+            <div>
+               <%= link_to "Cancel your booking",user_booking_path(current_user, demand), method: :delete, class: "btn btn-danger" %>
             </div>
+        </div>
 
-            <div class="demands-card-items">
-               <img src="http://unsplash.it/80x80" alt="" class="img-circle">
-               <p class="padded-name"><%= demand.expert.first_name %></p>
-            </div>
-
-            <div class="demands-card-items">
-            <%= link_to "Cancel your booking",user_booking_path(current_user, demand), method: :delete, class: "btn btn-danger" %>
+        <div class="card-demand-bottom">
+            <div class="card-demand-bottom-left">
+              <h3><%= demand.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></h3>
              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+
+             <div class="text-center card-demand-bottom-profile">
+                <img src="http://unsplash.it/50x50" alt="" class= "img-circle">
+                <p class="padded-name"><%= demand.expert.first_name %></p>
+             </div>
+
+              <div class="card-demand-bottom-description">
+                 <p><%= demand.comments %></p>
+              </div>
+
+        </div>
+      </div>
+    <% end %>
+
     </div>
 
-    <%if current_user.expert == "1"%>
+
+
+    <% if current_user.expert == "1"%>
 
 
     <div class="container">
