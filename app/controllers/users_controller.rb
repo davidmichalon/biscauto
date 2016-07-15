@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @booking = Booking.new
     @address = params[:query_address]
     @users_around = User.near(@address, 50)
 

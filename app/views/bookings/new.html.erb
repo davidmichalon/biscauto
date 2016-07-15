@@ -1,13 +1,20 @@
 <div class="container">
    <div class="row">
      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-
       <%= simple_form_for([@expert, @booking]) do |f| %>
-        <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?"%>
-        <%= f.input :price, label: "Quel prix offrez vous pour cette mission?"%>
-        <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)"%>
+        <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?" %>
+        <%= f.input :price, label: "Quel prix offrez vous pour cette mission?" %>
+        <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)" %>
         <%= f.button :submit %>
       <% end %>
    </div>
   </div>
 </div>
+
+
+
+<script>
+$( document ).ready(function() {
+  $('.datepicker').datepicker();
+}
+</script>

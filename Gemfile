@@ -4,6 +4,11 @@ ruby '2.3.1'
 gem 'devise'
 
 
+# datepicker gem
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
+end
+
 # geocoding gems
 gem 'geocoder'
 gem "coffee-rails"
