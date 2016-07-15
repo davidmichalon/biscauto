@@ -1,14 +1,11 @@
 <div class="homepage-hero-module">
     <div class="video-container">
         <div class="filter"></div>
-        <div class="title-container">
-          <h1>Vous souhaitez acheter un véhicule d'occasion ?</h1>
-          <h1 style="margin: 10px">Trouvez un expert près de chez vous</h1>
-        </div>
           <form action="users#index" class="col-md-8 offset-2 address-form" role="form">
             <div class="row">
-              <div class="form-group col-sm-8 col-sm-offset-2">
-                <input type="text" class="form-control col-sm-8 offset-2" name="query_address" placeholder="Vous cherchez un expert près de ...">
+              <div class="form-group col-sm-8 col-sm-offset-2" id="homepage-title">
+                <h1>Faites-vous accompagner d'un expert pour acheter votre véhicule d'occasion</h1>
+                <input type="text" class="form-control col-sm-8 offset-2" name="query_address" placeholder="Vous cherchez un expert près de ..." id="address-input">
                 <button type="submit" class="submit btn btn-lg btn-primary" style="margin:20px;">C'est parti !</button>
               </form>
             </div>
@@ -45,3 +42,13 @@
 
   </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+<script>
+  var placesAutocomplete = places({
+    container: document.querySelector('#address-input'),
+    language: 'fr',
+  });
+</script>
+

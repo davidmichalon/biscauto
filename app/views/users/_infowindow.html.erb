@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <div class="card-index-profile-btn">  <%= link_to "Voir le profil", user_path(expert), class: "btn btn-primary"%></div>
-    <div class="card-index-request-btn">  <%= link_to "Faire une demande", new_user_booking_path(expert), class: "btn btn-danger"%></div>
+    <button class="btn card-index-request-btn btn-danger" data-toggle="modal" data-target="#booking-modal-<%= expert.id %>">Faire une demande</button>
   </div>
 
 </div>
