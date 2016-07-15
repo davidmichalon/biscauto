@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
+
+
+
+
   def index
     @users = User.all
     @booking = Booking.new
@@ -22,11 +26,12 @@ class UsersController < ApplicationController
 
 
   def show
-
+  @user = User.find(params[:id])
   end
 
 
   def edit
+  @profile = Profile.find(params[:id])
   end
 
 
@@ -37,6 +42,12 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  # after_create :create_profile
+
+  def create_profile
+  self.profile.create
   end
 
   private
