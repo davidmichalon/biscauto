@@ -51,9 +51,21 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"> <%= expert.first_name %></h4>
+                <div class="profile-rating">
+                  <% expert.rating.round.times do %>
+                    <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
+                  <% end %>
+                </div>
               </div>
               <div class="modal-body">
-                <p>afficher le profil de notre expert</p>
+
+
+                <p><%= expert.first_name %> se présente :</p>
+                <p> <em>"<%= expert.description %>"</em></p>
+                <p> <br></p>
+                <p> <%= expert.missions.count %> missions à son actif</p>
+
+
               </div>
 
             </div><!-- /.modal-content -->
