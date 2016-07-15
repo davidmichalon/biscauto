@@ -9,7 +9,7 @@
         <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
       <% end %>
     </div>
-    <div class="card-index-profile-btn">  <%= link_to "Voir le profil", user_path(expert), class: "btn btn-primary"%></div>
+    <button class="btn card-index-profile-btn btn-primary" data-toggle="modal" data-target="#profile-modal-<%=expert.id%>">Afficher le profil</button>
     <button class="btn card-index-request-btn btn-danger" data-toggle="modal" data-target="#booking-modal-<%= expert.id %>">Faire une demande</button>
   </div>
 
