@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     @experts_around = @users_around.select do |user|
       user.expert == '1'
     end
+    @list_display = 5
+    @experts_around_short = @experts_around.first(@list_display)
 
     @markers = Gmaps4rails.build_markers(@experts_around) do |expert, marker|
       marker.lat expert.latitude
@@ -33,7 +35,6 @@ class UsersController < ApplicationController
   def edit
   @profile = Profile.find(params[:id])
   end
-
 
   def create
     @user = User.new(user_params)
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+
 
 
     def users_params

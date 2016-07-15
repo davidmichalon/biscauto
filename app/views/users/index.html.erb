@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+
+$(function(){
+    $('#show-more').on('click', function(event) {
+      console.log('salut');
+    });
+});
+
+</script>
 
 <div class="container">
 <h1> Nos experts à proximité</h1>
@@ -5,86 +14,87 @@
 
 
   <div class="row">
-    <div id="map" class="col-sm-6" style=" height: 600px; margin: 20px;">
+    <div id="map" class="col-sm-6" style=" height: 600px; margin: 10px;">
     </div>
 
-    <div class="col-sm-5">
-       <% @experts_around.each do |expert| %>
-         <div class="row">
-          <div class="col-sm-12 card-index">
-            <div class="card-index-user-name"> <b><%= expert.first_name %></b></div>
-            <div class="card-index-user-city"> <%= expert.city %></div>
-            <div class="card-index-avatar"> <%= image_tag expert.picture, class:"avatar-large" %> </div>
-            <div class="card-index-rating">
-              <% expert.rating.round.times do %>
-                <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
-              <% end %>
-            </div>
-            <button class="btn card-index-profile-btn btn-primary" data-toggle="modal" data-target="#profile-modal-<%=expert.id%>">Afficher le profil</button>
-            <button class="btn card-index-request-btn btn-danger" data-toggle="modal" data-target="#booking-modal-<%=expert.id%>">Faire une demande</button>
-          </div>
-        </div>
-        <!-- modal for the new booking -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="booking-modal-<%= expert.id %>">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Créer une demande</h4>
-              </div>
-              <div class="modal-body">
-                <%= simple_form_for([expert, @booking]) do |f| %>
-                <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?" %>
-                <%= f.input :price, label: "Quel prix offrez vous pour cette mission?" %>
-                <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)" %>
-                <%= f.button :submit %>
+      <div class="col-sm-5">
+      <h2 style="margin-top: 10px">Les plus proches:</h2>
+         <% count = 0 %>
+         <% @experts_around.each do |expert| %>
+           <% count +=1 %>
+           <div class="row <%= count > @list_display ? "hidden" : "" %> card-index-row">
+            <div class="col-sm-12 card-index">
+
+              <div class="card-index-user-name"> <b><%= expert.first_name %></b></div>
+              <div class="card-index-user-city"> <%= expert.city %></div>
+              <div class="card-index-avatar"> <%= image_tag expert.picture, class:"avatar-large" %> </div>
+              <div class="card-index-rating">
+                <% expert.rating.round.times do %>
+                  <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
                 <% end %>
               </div>
-
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <!-- modal for the profile display -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="profile-modal-<%= expert.id %>">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"> <%= expert.first_name %></h4>
-                <div class="profile-rating">
-                  <% expert.rating.round.times do %>
-                    <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="modal-body">
-
-
-                <p><%= expert.first_name %> se présente :</p>
-                <p> <em>"<%= expert.description %>"</em></p>
-                <p> <br></p>
-                <p> <%= expert.missions.count %> missions à son actif</p>
-
-
-              </div>
-
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-
-
-
-
-
-
-<% end %>
+              <button class="btn card-index-profile-btn btn-primary" data-toggle="modal" data-target="#profile-modal-<%=expert.id%>">Afficher le profil</button>
+              <button class="btn card-index-request-btn btn-danger" data-toggle="modal" data-target="#booking-modal-<%=expert.id%>">Faire une demande</button>
+            </div>
           </div>
+          <% end %>
+
+        <button id='show-more'> Voir plus de resultats </button>
 
         </div>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
+<% @experts_around.each do |expert| %>
+  <!-- modal for the new booking -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="booking-modal-<%= expert.id %>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Créer une demande</h4>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for([expert, @booking]) do |f| %>
+          <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?" %>
+          <%= f.input :price, label: "Quel prix offrez vous pour cette mission?" %>
+          <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)" %>
+          <%= f.button :submit %>
+          <% end %>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!-- modal for the profile display -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="profile-modal-<%= expert.id %>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"> <%= expert.first_name %></h4>
+          <div class="profile-rating">
+            <% expert.rating.round.times do %>
+              <%= image_tag 'biscauto_logo_small.png', class:"avatar-tiny" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p><%= expert.first_name %> se présente :</p>
+          <p> <em>"<%= expert.description %>"</em></p>
+          <p> <br></p>
+          <p> <%= expert.missions.count %> missions à son actif</p>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<% end %>
+
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -95,6 +105,6 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
-    })
+      })
   <% end %>
 <% end %>
