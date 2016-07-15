@@ -34,11 +34,11 @@
 
         <div class="card-demand-bottom">
             <div class="card-demand-bottom-left">
-              <h3><%= demand.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></h3>
+              <h3><%= demand.planned_for.strftime( "Rendez vous le %m/%d/%Y  a  %H:%M") %></h3>
              </div>
 
              <div class="text-center card-demand-bottom-profile">
-                <img src="http://unsplash.it/50x50" alt="" class= "img-circle">
+                <img src="<%= demand.expert.picture %>" alt="" class= "img-circle">
                 <p class="padded-name"><%= demand.expert.first_name %></p>
              </div>
 
@@ -59,13 +59,12 @@
 
     <div class="container">
       <h2>Mes missions</h2>
-       <ul class="left-padding">
         <% current_user.missions.each do |mission| %>
-          <li class= "list-unstyled">
-            <div class="demands-card">
+      <div class="card-demand">
+        <div class="card-demand-top">
 
-              <div class="demands-card-items">
-                <% case mission.booking_status %>
+            <div class="card-demand-top-left">
+               <% case mission.booking_status %>
                   <% when "pending" %>
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <p><%= mission.booking_status %></p>
@@ -73,25 +72,8 @@
                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                    <p><%= mission.booking_status %></p>
                 <% end %>
-              </div>
-
-
-            <div class="demands-card-items">
-             <p><%= mission.client.picture %></p>
-             <p><%= mission.client.first_name %></p>
             </div>
 
-
-            <div class="appointment">
-              <div class="demands-card-items">
-                <p><%= mission.planned_for.strftime( "Rendez vous le %A %m/%d/%Y  a  %H:%M") %></p>
-              </div>
-              <div class="demands-card-items">
-                <p><%= mission.comments %></p>
-              </div>
-            </div>
-
-          <div class="container">
             <div class="demands-card-items">
               <%= link_to "Accept your booking",accept_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-primary" %>
             </div>
@@ -99,16 +81,26 @@
             <div class="demands-card-items">
               <%= link_to "Decline your booking",decline_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-danger" %>
             </div>
-          </div>
+        </div>
 
-          </div>
-         </li>
-       <% end %>
-       </ul>
-     </div>
+        <div class="card-demand-bottom">
+            <div class="card-demand-bottom-left">
+              <h3><%= mission.planned_for.strftime( "Rendez vous le %m/%d/%Y  a  %H:%M") %></h3>
+            </div>
 
-    <% end %>
-   <% end %>
-  <% end %>
+            <div class="text-center card-demand-bottom-profile">
+                <img src="<%= mission.client.picture %>" alt="" class= "img-circle">
+                <p class="padded-name"><%= mission.client.first_name%></p>
+            </div>
 
+            <div class="card-demand-bottom-description">
+                 <p><%= mission.comments %></p>
+            </div>
 
+        </div>
+       </div>
+      <% end %>
+    </div>
+  <%end%>
+  <%end%>
+<%end%>

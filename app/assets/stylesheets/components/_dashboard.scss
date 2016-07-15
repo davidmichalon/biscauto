@@ -53,6 +53,13 @@ text-align: center
   }
 }
 
+.btn-primary {
+opacity: 0.4;
+  transition: all ease 0.5s;
+  &:hover{
+    opacity: 1;
+  }
+}
 
 body{
   color:#666666;
@@ -73,9 +80,10 @@ body{
 
 .card-demand{
   background-color: #E6E6E6;
-  padding: 20px;
+  padding: 10px;
   border-radius: 2px;
   border: 1px solid #CCCCCC;
+  margin: 8px;
 }
 
 
