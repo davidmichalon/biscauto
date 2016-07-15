@@ -1,9 +1,8 @@
 
-
-
-<%if user_signed_in? %>
-
   <% if @user == current_user %>
+
+  <% unless current_user.expert == "1"%>
+
      <div class="container">
 
         <h1>Mes demandes</h1>
@@ -36,7 +35,7 @@
              </div>
 
              <div class="text-center card-demand-bottom-profile">
-                <img src="<%= demand.expert.picture %>" alt="" class= "img-circle">
+                <img src="<%= demand.expert.picture %>" alt="" class= "avatar">
                 <p class="padded-name"><%= demand.expert.first_name %></p>
              </div>
 
@@ -44,20 +43,25 @@
                  <p><%= demand.comments %></p>
               </div>
 
+              <div class="card-demand-bottom-right">
+                <h1><%= demand.price%>&euro;</h1>
+              </div>
+
         </div>
       </div>
     <% end %>
 
     </div>
-  <% end %>
 
 
-    <% if current_user.expert == "1"%>
+
+    <% else%>
 
 
     <div class="container">
 
       <h1>Mes missions</h1>
+
         <% current_user.missions.where(booking_status: %w(accepted pending)).each do |mission| %>
       <div class="card-demand">
         <div class="card-demand-top">
@@ -90,7 +94,7 @@
             </div>
 
             <div class="text-center card-demand-bottom-profile">
-                <img src="<%= mission.client.picture %>" alt="" class= "img-circle">
+                <img src="<%= mission.client.picture %>" alt="" class= "avatar">
                 <p class="padded-name"><%= mission.client.first_name%></p>
             </div>
 
@@ -103,4 +107,5 @@
       <% end %>
     </div>
   <%end%>
-<%end%>
+  <%end%>
+

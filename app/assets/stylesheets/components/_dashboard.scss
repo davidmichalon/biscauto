@@ -19,6 +19,11 @@
   padding-left: 0px;
 }
 
+.avatar {
+  width: 90px;
+  border-radius: 50%;
+  }
+
 .appointment{
 display: flex;
 justify-content: space-around;
@@ -109,7 +114,7 @@ body{
 
 
 .card-demand-bottom-description{
-    flex: 0 0 70%;
+    flex: 0 0 60%;
   }
 
 .card-demand-bottom-profile{
@@ -120,8 +125,12 @@ body{
       margin-bottom: 10px;
     }
 
-.card-demand-bottom-left{
+.card-demand-bottom-right{
   flex: 0 0 15%;
+  // border-left: 1px solid #CCCCCC;
+}
+.card-demand-bottom-left{
+  flex: 0 0 10%;
   border-right: 1px solid #CCCCCC;
   }
 
