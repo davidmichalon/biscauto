@@ -4,13 +4,11 @@
 <%if user_signed_in? %>
 
   <% if @user == current_user %>
-
-      <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
      <div class="container">
-      <h1>Mes demandes</h1>
 
+        <h1>Mes demandes</h1>
         <% current_user.demands.each do |demand| %>
-      <div class="card-demand">
+        <div class="card-demand">
         <div class="card-demand-top">
 
             <div class="card-demand-top-left">
@@ -51,15 +49,16 @@
     <% end %>
 
     </div>
-
+  <% end %>
 
 
     <% if current_user.expert == "1"%>
 
 
     <div class="container">
-      <h2>Mes missions</h2>
-        <% current_user.missions.each do |mission| %>
+
+      <h1>Mes missions</h1>
+        <% current_user.missions.where(booking_status: %w(accepted pending)).each do |mission| %>
       <div class="card-demand">
         <div class="card-demand-top">
 
@@ -69,13 +68,15 @@
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <p><%= mission.booking_status %></p>
                   <% when "accepted" %>
-                   <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                   <i class="fa fa-check-circle-o" aria-hidden="true"  style="color: green;"></i>
                    <p><%= mission.booking_status %></p>
+
+
                 <% end %>
             </div>
 
             <div class="demands-card-items">
-              <%= link_to "Accept your booking",accept_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-primary" %>
+              <%= link_to "Accept your booking",accept_booking_user_booking_path(current_user, mission), method: :post, class: "btn btn-success" %>
             </div>
 
             <div class="demands-card-items">
@@ -101,6 +102,5 @@
        </div>
       <% end %>
     </div>
-  <%end%>
   <%end%>
 <%end%>

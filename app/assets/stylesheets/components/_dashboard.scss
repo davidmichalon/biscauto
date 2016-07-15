@@ -46,20 +46,13 @@ text-align: center
 }
 
 .btn-danger {
-  opacity: 0.4;
+  opacity: 0.6;
   transition: all ease 0.5s;
   &:hover{
     opacity: 1;
   }
 }
 
-.btn-primary {
-opacity: 0.4;
-  transition: all ease 0.5s;
-  &:hover{
-    opacity: 1;
-  }
-}
 
 body{
   color:#666666;

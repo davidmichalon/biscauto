@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @bookings = Booking.where(:user_id)
-    end
+  end
 
   def new
     @expert = User.find(params[:user_id])
