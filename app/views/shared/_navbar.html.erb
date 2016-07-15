@@ -1,6 +1,6 @@
 
-<div class="navbar-wagon">
-  <!-- Logo -->
+<div class="navbar-wagon navbar-wagon-fixed navbar-<%= controller.controller_name%>">
+  <!-- Logo  -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "Logo_with_title.png" %>
   <% end %>
@@ -12,13 +12,6 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
-        </div>
-      <% end %>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -27,7 +20,7 @@
          <%= image_tag current_user.picture, class: "avatar-bordered dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
+              <%= link_to user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
@@ -52,8 +45,6 @@
 
     <% end %>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

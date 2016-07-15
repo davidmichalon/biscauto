@@ -21,10 +21,32 @@
               <% end %>
             </div>
             <div class="card-index-profile-btn">  <%= link_to "Voir le profil", user_path(expert), class: "btn btn-primary"%></div>
-            <div class="card-index-request-btn">  <%= link_to "Faire une demande", new_user_booking_path(expert), class: "btn btn-danger"%></div>
+            <button class="btn card-index-request-btn btn-danger" data-toggle="modal" data-target="#booking-modal">Faire une demande</button>
           </div>
         </div>
-      <% end %>
+        <div class="modal fade" tabindex="-1" role="dialog" id="booking-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Créer une demande</h4>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for([expert, @booking]) do |f| %>
+                <%= f.input :planned_for, label: "A quelle date souhaitez-vous prendre rendez-vous ?" %>
+                <%= f.input :price, label: "Quel prix offrez vous pour cette mission?" %>
+                <%= f.input :comments, label: "Merci de detailler votre demande (modele, lien vers l'annonce...)" %>
+                <%= f.button :submit %>
+                <% end %>
+              </div>
+
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+          </div>
+        <% end %>
+        </div>
     </div>
   </div>
 </div>

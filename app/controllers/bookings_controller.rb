@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
 
-
   def index
     @user = User.find(params[:user_id])
     @bookings = Booking.where(:user_id)
@@ -25,26 +24,24 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking= Booking.find(params[:id])
+    @booking = Booking.find(params[:id])
     @booking.destroy
-  redirect_to user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   def accept_booking
-    @booking= Booking.find(params[:id])
+    @booking = Booking.find(params[:id])
     @booking.booking_status = "accepted"
     @booking.save
     redirect_to user_path(current_user)
   end
 
   def decline_booking
-    @booking= Booking.find(params[:id])
+    @booking = Booking.find(params[:id])
     @booking.booking_status = "declined"
     @booking.save
     redirect_to user_path(current_user)
   end
-
-
 
   def update
     @booking = Booking.find(params[:id])
@@ -52,9 +49,7 @@ class BookingsController < ApplicationController
 
     if @booking.update(params[:booking].permit(:user_id, :planned_for))
       flash[:notice] = 'Your booking was updated succesfully'
-
     else
-
       render 'edit'
     end
   end
